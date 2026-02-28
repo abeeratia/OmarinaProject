@@ -8,8 +8,18 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-poppins);
+  --color-primary: #f37021;
+  --color-secondary: #66cb63;
+  --color-dark: #181818;
+  --color-gray-text: #7b7b7b;
+
+  /* Reusable UI */
+  --shadow-bottom: 0 2px 0px 0px rgba(0, 0, 0, 0.05),
+    0 4px 0px 0px rgba(0, 0, 0, 0.05);
+  --shadow-bottom-hover: 0 25px 40px -10px rgba(0, 0, 0, 0.18);
+  --radius-card: 2rem;
+  --radius-card-lg: 2.5rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +32,83 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-poppins), sans-serif;
+}
+
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Global Swiper Fix: Shadow visibility */
+.swiper {
+  padding-bottom: 40px !important;
+  margin-bottom: -40px !important;
+  clip-path: inset(0 0 -50px 0); /* Allow shadow to bleed out bottom */
+}
+
+/* Custom Swiper Styles */
+.luxury-swiper .swiper-button-next,
+.luxury-swiper .swiper-button-prev,
+.boat-swiper .swiper-button-next,
+.boat-swiper .swiper-button-prev {
+  color: #f37021 !important;
+  background: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.luxury-swiper .swiper-button-next::after,
+.luxury-swiper .swiper-button-prev::after,
+.boat-swiper .swiper-button-next::after,
+.boat-swiper .swiper-button-prev::after {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.group:hover .swiper-button-next,
+.group:hover .swiper-button-prev {
+  opacity: 1;
+}
+
+/* Pagination Styles */
+.swiper-pagination {
+  bottom: -25px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.swiper-pagination-bullet {
+  width: 8px !important;
+  height: 8px !important;
+  background: #cdcccc !important;
+  opacity: 1 !important;
+  border-radius: 9999px !important;
+  transition: all 0.3s !important;
+  margin: 0 !important;
+}
+
+.swiper-pagination-bullet-active {
+  width: 8px !important;
+  background: #7b7b7b !important;
+}
+
+/* Testimonial Active Slide Effect */
+.testimonial-swiper .swiper-slide-active .testimonial-card {
+  border-color: #e5e7eb;
+  transform: scale(1.09);
+  transition: all 0.3s ease-in-out;
+  z-index: 10;
+  box-shadow: var(--shadow-bottom) !important;
 }

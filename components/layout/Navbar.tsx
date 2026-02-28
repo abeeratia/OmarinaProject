@@ -1,0 +1,185 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+import Container from "../ui/Container";
+import { NAV_LINKS } from "../../constants/data";
+
+/**
+ * Navbar component with Glassmorphism to match Figma design.
+ * Features: Central links, Language Picker, and Action Buttons.
+ */
+const Navbar = () => {
+  // Mobile menu state (Toggle logic for simple handling)
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <nav className="absolute top-0 left-0 w-full z-50 flex justify-center pt-6 md:pt-8 px-4 md:px-10">
+      <div className="w-full max-w-[1240px] bg-black/40 backdrop-blur-lg rounded-full px-5 md:px-8 py-1.5 md:py-1 flex items-center justify-between border border-white/5 shadow-2xl relative">
+        {/* LEFT GROUP: LOGO & NAV */}
+        <div className="flex items-center gap-6 lg:gap-12">
+          {/* LOGO AREA */}
+          <Link href="/" className="shrink-0">
+            <Image
+              src="/Logo.svg"
+              alt="Omarina Logo"
+              width={70}
+              height={28}
+              className="w-16 md:w-20"
+            />
+          </Link>
+
+          {/* NAVIGATION LINKS (Desktop) */}
+          <div className="hidden lg:flex items-center gap-8">
+            {NAV_LINKS.map((link, idx) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`text-[12px] font-light tracking-wide transition-all relative group ${
+                  idx === 0 ? "text-primary" : "text-white hover:text-primary"
+                }`}
+              >
+                {link.label}
+                {idx === 0 && (
+                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-primary rounded-full transition-all" />
+                )}
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* TOOLS & ACTIONS (Desktop) */}
+        <div className="hidden lg:flex items-center gap-4">
+          {/* Language Picker */}
+          <div className="bg-white/20 shadow-[0_3px_0px_rgba(0,0,0,0.9)] backdrop-blur-sm rounded-full px-2.5 py-1 flex items-center gap-2 border border-white/5 cursor-pointer hover:bg-white/10 transition-all group">
+            <svg
+              width="25"
+              height="25"
+              viewBox="0 0 32 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 28C14.3485 28 12.7929 27.6844 11.3333 27.0533C9.87379 26.4213 8.60267 25.5636 7.52001 24.48C6.43734 23.3964 5.57956 22.1253 4.94667 20.6667C4.31379 19.208 3.99823 17.6524 4.00001 16C4.00001 14.3431 4.31556 12.7862 4.94667 11.3293C5.57867 9.87156 6.43645 8.60178 7.52001 7.52C8.60356 6.43822 9.87467 5.58044 11.3333 4.94667C12.7929 4.31556 14.3485 4 16 4C17.6569 4 19.2138 4.31556 20.6707 4.94667C22.1285 5.57867 23.3987 6.43644 24.4813 7.52C25.564 8.60356 26.4213 9.87333 27.0533 11.3293C27.6845 12.7871 28 14.344 28 16C28 17.6516 27.6845 19.2071 27.0533 20.6667C26.4213 22.1262 25.5636 23.3973 24.48 24.48C23.3965 25.5627 22.1267 26.4204 20.6707 27.0533C19.2147 27.6862 17.6578 28.0018 16 28ZM16 26.6773C16.7822 25.672 17.4276 24.6849 17.936 23.716C18.4436 22.7471 18.8565 21.6627 19.1747 20.4627H12.8253C13.1782 21.7302 13.5996 22.8484 14.0893 23.8173C14.58 24.7862 15.2169 25.7396 16 26.6773ZM14.3027 26.4773C13.6805 25.744 13.1125 24.8373 12.5987 23.7573C12.0849 22.6782 11.7027 21.5796 11.452 20.4613H6.33867C7.10312 22.1191 8.18623 23.4791 9.58801 24.5413C10.9907 25.6027 12.5622 26.248 14.3027 26.4773ZM17.6973 26.4773C19.4378 26.248 21.0093 25.6027 22.412 24.5413C23.8138 23.4791 24.8969 22.1191 25.6613 20.4613H20.5493C20.2116 21.5964 19.7862 22.7036 19.2733 23.7827C18.7596 24.8627 18.2342 25.7618 17.6973 26.4773ZM5.79467 19.1293H11.1747C11.0733 18.5818 11.0022 18.0484 10.9613 17.5293C10.9187 17.0111 10.8973 16.5013 10.8973 16C10.8973 15.4987 10.9182 14.9889 10.96 14.4707C11.0018 13.9524 11.0729 13.4191 11.1733 12.8707H5.79601C5.65112 13.3329 5.53779 13.8364 5.45601 14.3813C5.37423 14.9253 5.33334 15.4649 5.33334 16C5.33334 16.5351 5.37379 17.0751 5.45467 17.62C5.53556 18.1649 5.6489 18.6676 5.79467 19.128M12.508 19.128H19.492C19.5933 18.5813 19.6645 18.0569 19.7053 17.5547C19.748 17.0533 19.7693 16.5351 19.7693 16C19.7693 15.4649 19.7485 14.9467 19.7067 14.4453C19.6649 13.944 19.5938 13.4196 19.4933 12.872H12.5067C12.4062 13.4187 12.3351 13.9431 12.2933 14.4453C12.2516 14.9467 12.2307 15.4649 12.2307 16C12.2307 16.5351 12.2516 17.0533 12.2933 17.5547C12.3351 18.056 12.4076 18.5804 12.508 19.128ZM20.8267 19.128H26.2053C26.3502 18.6667 26.4636 18.164 26.5453 17.62C26.6262 17.0751 26.6667 16.5351 26.6667 16C26.6667 15.4649 26.6262 14.9249 26.5453 14.38C26.4645 13.8351 26.3511 13.3324 26.2053 12.872H20.8253C20.9267 13.4187 20.9978 13.9516 21.0387 14.4707C21.0813 14.9898 21.1027 15.4996 21.1027 16C21.1027 16.5004 21.0818 17.0102 21.04 17.5293C20.9982 18.0484 20.9271 18.5818 20.8267 19.1293M20.5493 11.5387H25.6613C24.88 9.84622 23.8098 8.48622 22.4507 7.45867C21.0916 6.43111 19.5071 5.77733 17.6973 5.49733C18.3196 6.316 18.8791 7.25244 19.376 8.30667C19.8729 9.36 20.264 10.4373 20.5493 11.5387ZM12.8253 11.5387H19.1747C18.8227 10.2871 18.3885 9.15556 17.872 8.144C17.3556 7.13244 16.7316 6.192 16 5.32267C15.2685 6.19111 14.6445 7.13156 14.128 8.144C13.6116 9.15644 13.1765 10.288 12.8253 11.5387ZM6.34001 11.5387H11.452C11.7373 10.4382 12.1285 9.36089 12.6253 8.30667C13.1222 7.25244 13.6818 6.316 14.304 5.49733C12.4782 5.77822 10.8898 6.436 9.53867 7.47067C8.18756 8.50711 7.1209 9.86267 6.33867 11.5373"
+                fill="white"
+              />
+            </svg>
+
+            <span className="text-white text-[11px] font-light">English</span>
+            <svg
+              width="10"
+              height="9"
+              viewBox="0 0 16 9"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 1L7.66667 7.66667L14.3333 1"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+
+          <div className="flex items-center gap-6">
+            <Link
+              href="/login"
+              className="text-white text-[12px] font-light hover:text-primary transition-all pb-px border-b border-white/40"
+            >
+              Login
+            </Link>
+            <Link
+              href="/signup"
+              className="bg-primary text-white px-4 py-2 rounded-full text-[11px] font-light hover:bg-primary/90 transition-all"
+            >
+              Create Account
+            </Link>
+          </div>
+        </div>
+
+        {/* MOBILE MENU TOGGLE */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="lg:hidden text-white p-2 hover:bg-white/10 rounded-full transition-colors"
+        >
+          {isOpen ? (
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          ) : (
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          )}
+        </button>
+
+        {/* MOBILE MENU OVERLAY */}
+        {isOpen && (
+          <div className="absolute top-[calc(100%+12px)] left-0 w-full bg-black/90 backdrop-blur-xl rounded-3xl border border-white/10 p-6 flex flex-col gap-6 lg:hidden animate-in fade-in slide-in-from-top-4 duration-300">
+            <div className="flex flex-col gap-4">
+              {NAV_LINKS.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className="text-white text-lg font-light hover:text-primary transition-colors border-b border-white/5 pb-2"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+
+            <div className="flex flex-col gap-4 pt-2">
+              <div className="flex items-center gap-2 text-white font-light opacity-80">
+                <span>Language:</span>
+                <span className="text-primary">English</span>
+              </div>
+              <div className="flex gap-4 items-center">
+                <Link
+                  href="/login"
+                  onClick={() => setIsOpen(false)}
+                  className="flex-1 text-center text-white py-3 rounded-full border border-white/20 font-light"
+                >
+                  Login
+                </Link>
+                <Link
+                  href="/signup"
+                  onClick={() => setIsOpen(false)}
+                  className="flex-1 text-center bg-primary text-white py-3 rounded-full font-light"
+                >
+                  Sign Up
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;
