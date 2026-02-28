@@ -8,14 +8,14 @@ import { TESTIMONIALS } from "../../constants/data";
 
 const Testimonials = () => {
   return (
-    <section className="pt-6 pb-20 overflow-hidden">
+    <section className="pt-12 pb-20 overflow-hidden">
       <Container>
         <SectionHeading
           title="What Our Clients Say About Us"
           subtitle="Hear from our satisfied customers and see why they love our services"
         />
 
-        <div className="px-1 py-10">
+        <div className="px-1  pb-12">
           <CustomSwiper
             navigation={true}
             pagination={true}

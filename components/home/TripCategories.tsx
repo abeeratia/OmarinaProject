@@ -5,7 +5,7 @@ import { TRIP_CATEGORIES } from "../../constants/data";
 
 const TripCategories = () => {
   return (
-    <section className="py-6 overflow-hidden">
+    <section className="py-12 overflow-hidden">
       <Container>
         <SectionHeading
           title="Trip Categories"

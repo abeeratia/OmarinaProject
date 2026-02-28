@@ -8,7 +8,7 @@ import { LUXURY_TRIPS } from "../../constants/data";
 
 const LuxuryTrips = () => {
   return (
-    <section className="py-6 overflow-hidden">
+    <section className="py-12 overflow-hidden">
       <Container>
         <SectionHeading
           title="Luxury Trips Near You"

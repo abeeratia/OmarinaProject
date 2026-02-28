@@ -8,7 +8,7 @@ import { BOATS } from "../../constants/data";
 
 const RentBoat = () => {
   return (
-    <section className="py-6 overflow-hidden">
+    <section className="py-12 overflow-hidden">
       <Container>
         <SectionHeading
           title="Rent a Boat for Your Next Sea Trip"

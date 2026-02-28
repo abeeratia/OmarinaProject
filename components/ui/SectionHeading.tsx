@@ -5,7 +5,7 @@ interface SectionHeadingProps {
 
 const SectionHeading = ({ title, subtitle }: SectionHeadingProps) => {
   return (
-    <div className="mb-10">
+    <div className="mb-12">
       <h2 className="text-3xl font-medium text-dark mb-2 tracking-tight">
         {title}
       </h2>
