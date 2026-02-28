@@ -18,7 +18,7 @@ const Hero = () => {
 
       {/* Content  */}
       <div className="relative pt-8 z-10 w-full max-w-[2000px] px-6 text-center text-white flex flex-col items-center">
-        <h1 className="text-3xl md:text-5xl lg:text-5xl font-bold leading-tight mb-6 drop-shadow-lg max-w-[1200px] tracking-tighter">
+        <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-5xl font-bold leading-tight mb-6 drop-shadow-lg max-w-[1200px] tracking-tighter">
           Explore the Red Sea Like Never <br className="hidden md:block" />{" "}
           Before
         </h1>
@@ -29,20 +29,20 @@ const Hero = () => {
             <input
               type="text"
               placeholder="Search for Trips, Boats"
-              className="flex-1 bg-transparent border-none text-dark px-6 py-2 outline-none placeholder:text-gray-400 text-sm font-medium"
+              className="flex-1 bg-transparent border-none text-dark px-4 sm:px-6 py-2 outline-none placeholder:text-gray-400 text-xs sm:text-sm font-medium"
             />
-            <button className="bg-primary text-white px-8 py-2.5 rounded-full font-medium text-[12px] tracking-widest hover:bg-primary/90 transition-all ">
+            <button className="bg-primary text-white px-6 sm:px-8 py-2.5 rounded-full font-medium text-[11px] sm:text-[12px] tracking-widest hover:bg-primary/90 transition-all ">
               Search
             </button>
           </div>
 
-          <p className="text-white text-sm md:text-base font-medium tracking-wide drop-shadow-md opacity-80">
+          <p className="text-white text-xs sm:text-sm md:text-base font-medium tracking-wide drop-shadow-md opacity-80">
             From private boats to island trips, your sea adventure starts here.
           </p>
         </div>
 
         {/*  Button */}
-        <button className="bg-primary text-white px-10 py-3 rounded-full text-sm font-medium shadow-2xl shadow-primary/30 hover:scale-105 active:scale-95 transition-all">
+        <button className="bg-primary text-white px-8 sm:px-10 py-3 rounded-full text-xs sm:text-sm font-medium shadow-2xl shadow-primary/30 hover:scale-105 active:scale-95 transition-all">
           Find Your Perfect Match
         </button>
       </div>
